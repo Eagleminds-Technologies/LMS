@@ -29,10 +29,7 @@ We use **Git + GitHub** for version control:
 - `feature/xyz` → Feature-specific branches
 - Tag versions like: `v1.0.0`, `v1.1.0-beta`, etc.
 
-To release a new version:
-```bash
-git tag v1.0.0
-git push origin v1.0.0
+
 
 ## 👥 Roles & Permissions
 
