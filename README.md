@@ -6,17 +6,17 @@ Groups Exam is a modern SaaS-based Learning Management System designed for educa
 
 ## 🚀 Tech Stack
 
-| Layer          | Technology                            |
-|----------------|----------------------------------------|
-| Frontend       | React.js, vite (SPA) |
-| SEO Pages      | E-Commerce (Blog, Landing Pages)    |
-| Backend        | NodeJs,ExpressJs (RestFul Api Services)                            |
-| UI             | Tailwind CSS + shadcn/ui               |
-| Database       | PostgreSQL                    |
-| Auth           | JWT Token |
-| Mobile App     | Optional React Native (via API)        |
-| Hosting        | GCS, AWS |
-| Media Storage  | Amazon S3                              |
+| Layer              | Technology Description                                         |
+|-------------------|----------------------------------------------------------------|
+| **Frontend**       | React.js + Vite (SPA)                                          |
+| **SEO Pages**      | React/Next.js (for E-Commerce, Blog, Landing Pages)            |
+| **Backend**        | Node.js + Express.js (RESTful API Services)                    |
+| **UI**             | Tailwind CSS + shadcn/ui                                       |
+| **Database**       | PostgreSQL (Relational DB)                                     |
+| **Authentication** | JWT Token-based authentication                                 |
+| **Mobile App**     | Optional React Native (via the same API)                       |
+| **Hosting**        | Google Cloud (GCS) or AWS EC2/Lightsail                        |
+| **Media Storage**  | Amazon S3 (for videos, PDFs, images, etc.)                     |
 
 ---
 
