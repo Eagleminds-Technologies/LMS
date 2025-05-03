@@ -9,7 +9,7 @@ Groups Exam is a modern SaaS-based Learning Management System designed for educa
 | Layer          | Technology                            |
 |----------------|----------------------------------------|
 | Frontend       | React.js, vite (SPA) |
-| SEO Pages      | (Blog, Landing Pages)    |
+| SEO Pages      | E-Commerce (Blog, Landing Pages)    |
 | Backend        | NodeJs,ExpressJs (RestFul Api Services)                            |
 | UI             | Tailwind CSS + shadcn/ui               |
 | Database       | PostgreSQL                    |
