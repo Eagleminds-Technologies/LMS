@@ -24,7 +24,7 @@ Groups Exam is a modern SaaS-based Learning Management System designed for educa
 
 1. **Super Admin**: Manages global settings, revenue share, referrals
 2. **Institute Admin**: Manages courses, branches, trainers, students
-3. **Trainer/Trainee**: Uploads content, schedules classes, earns commission
+3. **Trainer/Tutor**: Uploads content, schedules classes, earns commission
 4. **Student**: Accesses learning content, takes exams, earns certificates
 
 ---
