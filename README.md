@@ -20,6 +20,20 @@ Groups Exam is a modern SaaS-based Learning Management System designed for educa
 
 ---
 
+## 🔖 Version Management
+
+We use **Git + GitHub** for version control:
+
+- `main` → Production-ready code
+- `dev` → Latest development branch
+- `feature/xyz` → Feature-specific branches
+- Tag versions like: `v1.0.0`, `v1.1.0-beta`, etc.
+
+To release a new version:
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+
 ## 👥 Roles & Permissions
 
 1. **Super Admin**: Manages global settings, revenue share, referrals
