@@ -8,14 +8,14 @@ Groups Exam is a modern SaaS-based Learning Management System designed for educa
 
 | Layer          | Technology                            |
 |----------------|----------------------------------------|
-| Frontend       | Laravel + Inertia.js + React.js (SPA) |
-| SEO Pages      | Laravel Blade (Blog, Landing Pages)    |
-| Backend        | Laravel 10+                            |
+| Frontend       | React.js, vite (SPA) |
+| SEO Pages      | (Blog, Landing Pages)    |
+| Backend        | NodeJs,ExpressJs                            |
 | UI             | Tailwind CSS + shadcn/ui               |
-| Database       | MySQL or PostgreSQL                    |
-| Auth           | Laravel Sanctum (Token + 1 Device Only)|
+| Database       | PostgreSQL                    |
+| Auth           | JWT Token |
 | Mobile App     | Optional React Native (via API)        |
-| Hosting        | Vercel (Frontend), Forge/DigitalOcean |
+| Hosting        | GCS, AWS |
 | Media Storage  | Amazon S3                              |
 
 ---
@@ -24,7 +24,7 @@ Groups Exam is a modern SaaS-based Learning Management System designed for educa
 
 1. **Super Admin**: Manages global settings, revenue share, referrals
 2. **Institute Admin**: Manages courses, branches, trainers, students
-3. **Trainer/Tutor**: Uploads content, schedules classes, earns commission
+3. **Tutor**: Uploads content, schedules classes, earns commission
 4. **Student**: Accesses learning content, takes exams, earns certificates
 
 ---
