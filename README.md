@@ -132,4 +132,4 @@ Groups Exam is a modern SaaS-based Learning Management System designed for educa
 
 ## 🔗 License
 
-This project is proprietary and maintained by [Eagleminds Technologies Private Limited](https://eagleminds.in). All rights reserved.
+This project is proprietary and maintained by [Eagleminds Technologies Private Limited](https://eagleminds.net). All rights reserved.
