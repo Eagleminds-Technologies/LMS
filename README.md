@@ -1,6 +1,6 @@
 # 📘 Groups Exam LMS — Full-Featured SaaS Learning Management System
 
-Groups Exam is a modern SaaS-based Learning Management System designed for educational institutes to manage content, live classes, assessments, referrals, and student engagement. Built with Laravel + Inertia.js + React.js, it includes SEO support for blogs, multi-role access, revenue tracking, and AI-powered promotions.
+Groups Exam is a modern SaaS-based Learning Management System designed for educational institutes to manage content, live classes, assessments, referrals, and student engagement. Built with Nodejs, ReactJS, PostgreSQL, it includes SEO support for blogs, multi-role access, revenue tracking, and AI-powered promotions.
 
 ---
 
