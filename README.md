@@ -131,15 +131,6 @@ We use **Git + GitHub** for version control:
 
 ---
 
-## 📂 Output Structure
-
-- Laravel + Inertia + React SPA layout
-- REST API for mobile/React Native access
-- Blade-based SEO pages for blogs and content marketing
-- RBAC Middleware for role control
-- Seeders for roles, plans, referral codes, and dummy courses
-
----
 
 ## 🔗 License
 
