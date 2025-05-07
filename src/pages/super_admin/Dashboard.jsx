@@ -67,7 +67,7 @@ const columns = [
     accessor: 'students',
     cell: (row) => (
       <div className="flex items-center gap-2">
-        <Users className="h-4 w-4 text-gray-500" />
+        <Users className="h-4 w-4 text-muted-foreground" />
         {row.students}
       </div>
     ),
@@ -90,9 +90,9 @@ const columns = [
 
 const Dashboard = () => {
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-6 bg-background">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">Dashboard Overview</h1>
+        <h1 className="text-2xl font-semibold text-foreground">Dashboard Overview</h1>
       </div>
 
       {/* Stats Grid */}
@@ -112,8 +112,8 @@ const Dashboard = () => {
                 </span>
               </div>
               <div className="mt-4">
-                <h3 className="text-2xl font-semibold">{stat.value}</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400">{stat.name}</p>
+                <h3 className="text-2xl font-semibold text-foreground">{stat.value}</h3>
+                <p className="text-sm text-muted-foreground">{stat.name}</p>
               </div>
             </CardContent>
           </Card>
@@ -124,7 +124,7 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2 text-foreground">
               <BookOpen className="h-5 w-5" />
               Course Stats
             </CardTitle>
@@ -132,16 +132,16 @@ const Dashboard = () => {
           <CardContent>
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-sm">Active Courses</span>
-                <span className="font-semibold">1,234</span>
+                <span className="text-sm text-muted-foreground">Active Courses</span>
+                <span className="font-semibold text-foreground">1,234</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm">Total Enrollments</span>
-                <span className="font-semibold">45,678</span>
+                <span className="text-sm text-muted-foreground">Total Enrollments</span>
+                <span className="font-semibold text-foreground">45,678</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm">Completion Rate</span>
-                <span className="font-semibold">78%</span>
+                <span className="text-sm text-muted-foreground">Completion Rate</span>
+                <span className="font-semibold text-foreground">78%</span>
               </div>
             </div>
           </CardContent>
@@ -149,7 +149,7 @@ const Dashboard = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2 text-foreground">
               <Calculator className="h-5 w-5" />
               Revenue Overview
             </CardTitle>
@@ -157,16 +157,16 @@ const Dashboard = () => {
           <CardContent>
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-sm">Monthly Revenue</span>
-                <span className="font-semibold">₹89,456</span>
+                <span className="text-sm text-muted-foreground">Monthly Revenue</span>
+                <span className="font-semibold text-foreground">₹89,456</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm">Annual Growth</span>
-                <span className="font-semibold">23%</span>
+                <span className="text-sm text-muted-foreground">Annual Growth</span>
+                <span className="font-semibold text-foreground">23%</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm">Avg. Transaction</span>
-                <span className="font-semibold">₹2,345</span>
+                <span className="text-sm text-muted-foreground">Avg. Transaction</span>
+                <span className="font-semibold text-foreground">₹2,345</span>
               </div>
             </div>
           </CardContent>
@@ -174,7 +174,7 @@ const Dashboard = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2 text-foreground">
               <Calendar className="h-5 w-5" />
               Monthly Trends
             </CardTitle>
@@ -182,16 +182,16 @@ const Dashboard = () => {
           <CardContent>
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-sm">New Institutes</span>
-                <span className="font-semibold">+12</span>
+                <span className="text-sm text-muted-foreground">New Institutes</span>
+                <span className="font-semibold text-foreground">+12</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm">Student Growth</span>
-                <span className="font-semibold">+18%</span>
+                <span className="text-sm text-muted-foreground">Student Growth</span>
+                <span className="font-semibold text-foreground">+18%</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm">Renewal Rate</span>
-                <span className="font-semibold">92%</span>
+                <span className="text-sm text-muted-foreground">Renewal Rate</span>
+                <span className="font-semibold text-foreground">92%</span>
               </div>
             </div>
           </CardContent>
@@ -201,7 +201,7 @@ const Dashboard = () => {
       {/* Recent Institutes Table */}
       <Card>
         <CardHeader>
-          <CardTitle>Recent Institutes</CardTitle>
+          <CardTitle className="text-foreground">Recent Institutes</CardTitle>
         </CardHeader>
         <CardContent>
           <DataTable

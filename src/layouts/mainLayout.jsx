@@ -59,13 +59,19 @@ const MainLayout = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
+    
+    // Force light mode for this layout
+    const root = window.document.documentElement;
+    root.classList.remove('dark');
+    root.classList.add('light');
+    
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [scrolled]);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen light">
       <PublicHeader />
       <main className="flex-grow">
         <Outlet />

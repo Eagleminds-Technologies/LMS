@@ -33,7 +33,7 @@ const SuperAdminLayout = () => {
   }, []);
 
   return (
-    <div className="flex h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="flex h-screen bg-background text-foreground transition-colors duration-200">
       {/* Sidebar Component */}
       <SuperAdminSidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
@@ -42,7 +42,7 @@ const SuperAdminLayout = () => {
         sidebarOpen ? 'md:ml-64' : 'md:ml-16'
       }`}>
         {/* Content wrapper with scrolling */}
-        <div className="flex-1 overflow-y-auto bg-gray-50 dark:bg-gray-900">
+        <div className="flex-1 overflow-y-auto bg-background">
           {/* Header Component - Now passing the toggle function */}
           <SuperAdminHeader toggleSidebar={toggleSidebar} />
           

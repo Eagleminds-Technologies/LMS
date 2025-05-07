@@ -19,11 +19,11 @@ const SuperAdminHeader = ({ toggleSidebar }) => {
 
   return (
     <div className="px-4 py-3">
-      <header className="h-16 flex items-center justify-between px-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 z-10 shadow-sm rounded-2xl">
+      <header className="h-16 flex items-center justify-between px-6 bg-background border border-input z-10 shadow-sm rounded-2xl">
         {/* Sidebar Toggle Button - Now visible on all screen sizes */}
         <button 
           onClick={toggleSidebar} 
-          className="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+          className="p-2 rounded-md text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
           aria-label="Toggle sidebar"
         >
           <AlignLeft size={20} />
@@ -37,38 +37,38 @@ const SuperAdminHeader = ({ toggleSidebar }) => {
           <div className="relative">
             <button 
               onClick={toggleNotification} 
-              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 relative"
+              className="p-2 rounded-full hover:bg-muted relative"
             >
-              <Bell size={20} className="text-gray-500 dark:text-gray-400" />
-              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+              <Bell size={20} className="text-muted-foreground" />
+              <span className="absolute top-1 right-1 w-2 h-2 bg-destructive rounded-full"></span>
             </button>
             
             {/* Notification Dropdown */}
             {notificationOpen && (
-              <div className="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-20 border border-gray-200 dark:border-gray-700">
-                <div className="p-3 border-b border-gray-100 dark:border-gray-700">
-                  <h3 className="text-sm font-semibold">Notifications</h3>
+              <div className="absolute right-0 mt-2 w-80 bg-background rounded-md shadow-lg py-1 z-20 border border-input">
+                <div className="p-3 border-b border-input">
+                  <h3 className="text-sm font-semibold text-foreground">Notifications</h3>
                 </div>
                 <div className="max-h-64 overflow-y-auto">
-                  <div className="p-3 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer border-b border-gray-100 dark:border-gray-700">
-                    <p className="text-sm">New institute registered</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">5 minutes ago</p>
+                  <div className="p-3 hover:bg-muted cursor-pointer border-b border-input">
+                    <p className="text-sm text-foreground">New institute registered</p>
+                    <p className="text-xs text-muted-foreground">5 minutes ago</p>
                   </div>
-                  <div className="p-3 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer border-b border-gray-100 dark:border-gray-700">
-                    <p className="text-sm">Subscription payment received</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">1 hour ago</p>
+                  <div className="p-3 hover:bg-muted cursor-pointer border-b border-input">
+                    <p className="text-sm text-foreground">Subscription payment received</p>
+                    <p className="text-xs text-muted-foreground">1 hour ago</p>
                   </div>
-                  <div className="p-3 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer border-b border-gray-100 dark:border-gray-700">
-                    <p className="text-sm">New support ticket (#T-452)</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">3 hours ago</p>
+                  <div className="p-3 hover:bg-muted cursor-pointer border-b border-input">
+                    <p className="text-sm text-foreground">New support ticket (#T-452)</p>
+                    <p className="text-xs text-muted-foreground">3 hours ago</p>
                   </div>
-                  <div className="p-3 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer">
-                    <p className="text-sm">System maintenance completed</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">Yesterday</p>
+                  <div className="p-3 hover:bg-muted cursor-pointer">
+                    <p className="text-sm text-foreground">System maintenance completed</p>
+                    <p className="text-xs text-muted-foreground">Yesterday</p>
                   </div>
                 </div>
-                <div className="p-2 text-center border-t border-gray-100 dark:border-gray-700">
-                  <button className="text-xs text-primary hover:underline dark:text-blue-400">
+                <div className="p-2 text-center border-t border-input">
+                  <button className="text-xs text-primary hover:underline">
                     View all notifications
                   </button>
                 </div>
@@ -80,27 +80,27 @@ const SuperAdminHeader = ({ toggleSidebar }) => {
           <div className="relative">
             <button 
               onClick={toggleProfileDropdown} 
-              className="flex items-center space-x-2 p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
+              className="flex items-center space-x-2 p-1 rounded-md hover:bg-muted"
             >
-              <div className="w-8 h-8 rounded-full bg-primary/20 dark:bg-primary/40 flex items-center justify-center text-primary dark:text-primary-foreground">
+              <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
                 JD
               </div>
-              <ChevronDown size={16} className="text-gray-500 dark:text-gray-400" />
+              <ChevronDown size={16} className="text-muted-foreground" />
             </button>
 
             {/* Profile Dropdown */}
             {profileDropdown && (
-              <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-20 border border-gray-200 dark:border-gray-700">
-                <button className="flex items-center space-x-2 w-full px-4 py-2 text-left text-sm hover:bg-gray-50 dark:hover:bg-gray-700">
+              <div className="absolute right-0 mt-2 w-48 bg-background rounded-md shadow-lg py-1 z-20 border border-input">
+                <button className="flex items-center space-x-2 w-full px-4 py-2 text-left text-sm text-foreground hover:bg-muted">
                   <User size={16} />
                   <span>Profile</span>
                 </button>
-                <button className="flex items-center space-x-2 w-full px-4 py-2 text-left text-sm hover:bg-gray-50 dark:hover:bg-gray-700">
+                <button className="flex items-center space-x-2 w-full px-4 py-2 text-left text-sm text-foreground hover:bg-muted">
                   <Settings size={16} />
                   <span>Settings</span>
                 </button>
-                <div className="border-t border-gray-100 dark:border-gray-700 my-1"></div>
-                <button className="flex items-center space-x-2 w-full px-4 py-2 text-left text-sm text-red-600 dark:text-red-400 hover:bg-gray-50 dark:hover:bg-gray-700">
+                <div className="border-t border-input my-1"></div>
+                <button className="flex items-center space-x-2 w-full px-4 py-2 text-left text-sm text-destructive hover:bg-muted">
                   <LogOut size={16} />
                   <span>Logout</span>
                 </button>

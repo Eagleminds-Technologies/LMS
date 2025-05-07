@@ -136,23 +136,20 @@ const SuperAdminSidebar = ({ sidebarOpen = true, setSidebarOpen }) => {
   return (
     <aside
       className={cn(
-        'fixed inset-y-0 left-0 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 transition-all duration-300 z-20',
+        'fixed inset-y-0 left-0 bg-background border-r border-input transition-all duration-300 z-20',
         sidebarOpen ? 'w-64' : 'w-16'
       )}
     >
-      {/* Toggle Button - Positioned outside the sidebar */}
-     
-
       <div className="flex flex-col h-full">
         {/* Logo */}
         <div className={cn(
-          "h-16 flex items-center border-b border-gray-200 dark:border-gray-800",
+          "h-16 flex items-center border-b border-input",
           sidebarOpen ? "px-6 justify-start" : "px-0 justify-center"
         )}>
           {sidebarOpen ? (
             <div className="flex items-center gap-3">
               <img src={logoImg} alt="LMS Logo" className="h-8 w-8" />
-              <span className="text-xl font-semibold">LMS Admin</span>
+              <span className="text-xl font-semibold text-foreground">LMS Admin</span>
             </div>
           ) : (
             <div className="h-12 w-12 bg-primary/10 rounded-xl flex items-center justify-center overflow-hidden">
@@ -170,12 +167,12 @@ const SuperAdminSidebar = ({ sidebarOpen = true, setSidebarOpen }) => {
                 <div 
                   className={cn(
                     "flex items-center justify-between px-3 py-2 cursor-pointer",
-                    "text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                    "text-xs font-semibold text-muted-foreground uppercase tracking-wider"
                   )}
                   onClick={() => toggleGroup(group.id)}
                 >
                   <span>{group.label}</span>
-                  <button className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                  <button className="text-muted-foreground hover:text-foreground">
                     {expandedGroups[group.id] ? (
                       <ChevronDown className="h-3 w-3" />
                     ) : (
@@ -198,11 +195,11 @@ const SuperAdminSidebar = ({ sidebarOpen = true, setSidebarOpen }) => {
                       className={({ isActive }) =>
                         cn(
                           'flex items-center rounded-md px-3 py-2 text-sm font-medium transition-all',
-                          'hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-100',
+                          'hover:bg-muted hover:text-foreground',
                           sidebarOpen ? 'gap-3' : 'justify-center',
                           isActive
-                            ? 'bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-100'
-                            : 'text-gray-500 dark:text-gray-400'
+                            ? 'bg-muted text-foreground'
+                            : 'text-muted-foreground'
                         )
                       }
                       title={item.name}
@@ -217,7 +214,7 @@ const SuperAdminSidebar = ({ sidebarOpen = true, setSidebarOpen }) => {
                         )} />
                         
                         {!sidebarOpen && item.badge && (
-                          <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-primary flex items-center justify-center text-[10px] text-white">
+                          <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-primary flex items-center justify-center text-[10px] text-primary-foreground">
                             •
                           </span>
                         )}
@@ -225,7 +222,7 @@ const SuperAdminSidebar = ({ sidebarOpen = true, setSidebarOpen }) => {
                       
                       {sidebarOpen && <span>{item.name}</span>}
                       {sidebarOpen && item.badge && (
-                        <span className="ml-auto rounded-full bg-primary px-2 py-0.5 text-xs text-white">
+                        <span className="ml-auto rounded-full bg-primary px-2 py-0.5 text-xs text-primary-foreground">
                           {item.badge}
                         </span>
                       )}
@@ -236,7 +233,7 @@ const SuperAdminSidebar = ({ sidebarOpen = true, setSidebarOpen }) => {
 
               {/* Group divider */}
               {sidebarOpen && (
-                <div className="h-px bg-gray-200 dark:bg-gray-800 my-2 mx-3"></div>
+                <div className="h-px bg-border my-2 mx-3"></div>
               )}
             </div>
           ))}
@@ -244,30 +241,30 @@ const SuperAdminSidebar = ({ sidebarOpen = true, setSidebarOpen }) => {
 
         {/* User Profile */}
         <div className={cn(
-          "border-t border-gray-200 dark:border-gray-800 p-4",
+          "border-t border-input p-4",
           !sidebarOpen && "flex justify-center"
         )}>
           {sidebarOpen ? (
             <div className="flex items-center gap-3">
-              <div className="h-8 w-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                <span className="text-xs font-medium">SA</span>
+              <div className="h-8 w-8 rounded-full bg-muted flex items-center justify-center">
+                <span className="text-xs font-medium text-muted-foreground">SA</span>
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
+                <p className="text-sm font-medium text-foreground truncate">
                   Super Admin
                 </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                <p className="text-xs text-muted-foreground truncate">
                   admin@lms.com
                 </p>
               </div>
-              <button className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+              <button className="text-muted-foreground hover:text-foreground">
                 <LogOut className="h-4 w-4" />
               </button>
             </div>
           ) : (
             <div className="cursor-pointer" title="Super Admin">
-              <div className="h-8 w-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                <span className="text-xs font-medium">SA</span>
+              <div className="h-8 w-8 rounded-full bg-muted flex items-center justify-center">
+                <span className="text-xs font-medium text-muted-foreground">SA</span>
               </div>
             </div>
           )}
