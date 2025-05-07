@@ -1,137 +1,105 @@
-# 📘 Groups Exam LMS — Full-Featured SaaS Learning Management System
 
-Groups Exam is a modern SaaS-based Learning Management System designed for educational institutes to manage content, live classes, assessments, referrals, and student engagement. Built with Nodejs, ReactJS, PostgreSQL, it includes SEO support for blogs, multi-role access, revenue tracking, and AI-powered promotions.
+# LMS SaaS Web Application (Frontend)
 
----
+This is the frontend of a SaaS-based Learning Management System (LMS) built with **ReactJS**, **Vite**, **Tailwind CSS**, and **Shadcn/UI**. It includes:
 
-## 🚀 Tech Stack
-
-| Layer              | Technology Description                                         |
-|-------------------|----------------------------------------------------------------|
-| **Frontend**       | React.js + Vite (SPA)                                          |
-| **SEO Pages**      | React/Next.js (for E-Commerce, Blog, Landing Pages)            |
-| **Backend**        | Node.js + Express.js (RESTful API Services)                    |
-| **UI**             | Tailwind CSS + shadcn/ui                                       |
-| **Database**       | PostgreSQL (Relational DB)                                     |
-| **Authentication** | JWT Token-based authentication                                 |
-| **Mobile App**     | Optional React Native (via the same API)                       |
-| **Hosting**        | Google Cloud (GCS) or AWS EC2/Lightsail                        |
-| **Media Storage**  | Amazon S3 (for videos, PDFs, images, etc.)                     |
+- Public landing pages (customizable by Super Admin)
+- A separate Super Admin Panel
+- Role-based access: Institute Admins, Tutors, Students, SaaS Staff
 
 ---
 
-## 🔖 Version Management
+## Tech Stack
 
-We use **Git + GitHub** for version control:
-
-- `main` → Production-ready code
-- `dev` → Latest development branch
-- `feature/xyz` → Feature-specific branches
-- Tag versions like: `v1.0.0`, `v1.1.0-beta`, etc.
-
-
-
-## 👥 Roles & Permissions
-
-1. **Super Admin**: Manages global settings, revenue share, referrals
-2. **Institute Admin**: Manages courses, branches, trainers, students
-3. **Tutor**: Uploads content, schedules classes, earns commission
-4. **Student**: Accesses learning content, takes exams, earns certificates
+| Layer           | Technology                                |
+|----------------|--------------------------------------------|
+| Frontend       | ReactJS + Vite                             |
+| Styling        | Tailwind CSS + Shadcn/UI                   |
+| State Mgmt     | Redux                   |
+| Forms          | React Hook Form + Yup                  |
+| Routing        | React Router v6+                           |
+| API Layer      | Axios                                      |
+| Icons          | Lucide-react                               |
+| UI Components  | Shadcn/UI                                  |
+| Dev Tools      | ESLint, Prettier, Husky (optional)         |
 
 ---
 
-## 📦 Features & Modules
+## Folder Structure
 
-### 📚 Content Management
-- Course → Lessons → Videos, Quizzes, PDFs
-- Multilingual content (Tamil, Telugu, Kannada, etc.)
-- 3-Step Approval: Creator → Verifier → Approver
-- Bulk upload via Excel/Word
-- Lock next content until previous is completed
-- Reuse uploaded videos across courses
-
-### 📄 Previous Year Question Bank
-- Categorized by Exam → Subject → Lesson
-- Excel Import (Serial, Question, Options, Answer, Explanation)
-- Heatmap analytics to show frequency of repeated questions
-- Mark questions as Free/Paid
-- Global search by keyword or exam
-
-### 📈 Assessments & Exams
-- Quiz (10 MCQs), Aptitude Tests (with < 5 min videos)
-- Submit & view solutions, OMR-style PDF export
-- Live Zoom Exam with poll voting and leaderboard
-- Countdown timer, result & rank board
-
-### 📺 Live Classes & Webinars
-- Zoom API Integration with watermark overlay (Institute name + contact)
-- YouTube Live for webinars + E-Certificate after participation
-- Alerts via Email, WhatsApp, and SMS
-- Time-limited access for free users (e.g., 2 hours)
-
-### 🛒 E-Commerce & Cart
-- Sell paid/free videos, PDFs, e-books, and physical books
-- Bundle multiple courses for purchase
-- Dynamic top-bar category filtering (e.g., TNPSC, UPSC)
-
-### 🧾 Subscriptions & Revenue
-- Plan durations: 15 days, 1M, 3M, 6M, 1Y, 3Y
-- Admin-trainer revenue sharing per plan
-- Auto-generated invoice sent via Email/WhatsApp
-
-### 👥 Referral System
-- Admin creates codes → Trainers distribute
-- Discount for student + commission for trainer
-- Validity periods: 1M, 3M, 6M, 1Y
-- Real-time notifications
-- Dashboard analytics for Admin and Trainer
-
-### 📢 Marketing & Promotions
-- AI-generated promotion codes with expiry/date limits
-- Display welcome promo popup on app launch
-- WhatsApp and Email campaign manager
-- Fixed or time-limited discounts per campaign
-
-### 🆓 Guest Access Control
-- Limit total watch time for free users (e.g., 2 hours for live class)
-- Enforce login after time exhausted
-
-### 🔐 Security
-- One-device login (1 Mobile + 1 Desktop)
-- Mandatory Email + Mobile verification for students
-- GDPR/CCPA-compliant encryption
-
-### 📣 Community & Blog
-- Student/trainer can write blogs (admin approval required)
-- Newsroom section for announcements
-- Student-submitted quizzes (approval required)
-
-### 🎓 Certificates & Admission
-- Auto-generate course completion certificates
-- Custom templates per institute
-- Branch-wise admission with payment
-- Admin-managed banners and marquee ads
-
-### 📤 Smart TV Casting
-- Cast videos or files to smart TV or external display via Web API
-
-### 📊 Dashboards & Analytics
-- Admin/Trainer Dashboards: commissions, referrals, revenue
-- Student Dashboard: progress, certificates, test ranks
-- Institute reports: enrollments, attendance, plan usage
+```bash
+src/
+├── api/                 # Axios services
+│   ├── axios.js|  
+│   ├── main_page.mock.js
+│   └── mock/
+│       ├── institute.mock.js    # Mock for institute CRUD
+│       ├── staff.mock.js        # Mock for SaaS staff CRUD
+│       ├── plans.mock.js        # Mock for plan management
+│       └── utils.mock.js        # Common mock helpers        
+├── assets/              # Static assets
+├── components/          # Reusable UI components
+│   ├── layout/          # Header, Footer, Sidebar
+│   └── ui/              # shadcn/ui components
+├── constants/           # App-wide constants
+├── hooks/               # Custom hooks
+├── layouts/  
+|   ├── superAdmin.js    # super admin panels
+|   ├── mainLayout.js    # Layouts for landing pages
+├── pages/
+│   ├── public/          # Home, About, Pricing, Contact, Login
+│   └── super_admin/     # Dashboard, Institutes, Plans, Staff(CRUD)
+├── routes/              # Route configurations
+|   ├── super_admin.js   
+├── store/               #  Redux store|    
+│   └── super_admin/
+│       ├── institute.mock.js    # store for institute CRUD
+│       ├── staff.mock.js        # store for SaaS staff CRUD
+│       ├── plans.mock.js        # store for plan management
+│                    
+├── types/               # TypeScript definitions
+├── utils/               # Utility functions
+├── App.tsx              # App root
+└── main.tsx             # Entry point
+```
 
 ---
 
-## ✅ Testing & Deployment
+## Key Features
 
-- ✅ Unit Testing for APIs and components
-- ✅ Integration + UAT coverage for major workflows
-- ✅ Git-based version control with deployment scripts
-- ✅ Auto-deploy support for staging and production pipelines
+### Public Pages (Customizable by Super Admin)
+
+- Landing Page with Hero/Slider
+- Pricing
+- About Us
+- Contact Us
+- Login & Registration for Institutes
+
+### Super Admin Panel
+
+- Dashboard with analytics
+- Manage Institutes
+- Create SaaS Staff with role-based permissions
+- Tax management (CGST/SGST – 9% each)
+- Location management (Country > State > City)
+- Commission models:
+  - Student-Based Commission
+  - Student + Marketplace Course Commission
+- View subscriptions (by date, status, etc.)
+- Customize public pages and theme colors
+
+---
+
+## User Roles
+
+- **Super Admin** – Full access and customization
+- **SaaS Staff** – Assigned permissions (ticket mgmt., approvals)
+- **Institute Admin** – Creates tutors & students
+- **Tutor/Teacher** – Manages course content
+- **Student** – Access to approved courses
 
 ---
 
 
-## 🔗 License
 
-This project is proprietary and maintained by [Eagleminds Technologies Private Limited](https://eagleminds.net). All rights reserved.
+
