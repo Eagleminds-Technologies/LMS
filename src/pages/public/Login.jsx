@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Eye, EyeOff, AlertCircle } from 'lucide-react';
+import { Button } from '../../components/ui/Button';
 import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
@@ -142,10 +143,12 @@ const Login = () => {
             </div>
 
             <div>
-              <button
+              <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                variant="default"
+                size="lg"
+                className="w-full font-medium text-base border border-gray-300"
               >
                 {isLoading ? (
                   <span className="flex items-center">
@@ -158,7 +161,7 @@ const Login = () => {
                 ) : (
                   'Sign in'
                 )}
-              </button>
+              </Button>
             </div>
           </form>
           

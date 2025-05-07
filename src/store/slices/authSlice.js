@@ -15,26 +15,42 @@ export const login = createAsyncThunk(
   'auth/login',
   async ({ email, password }, { rejectWithValue }) => {
     try {
-      // In a real app, this would be an actual API call
-      // For now we'll simulate a login
-      if (email === 'admin@example.com' && password === 'password123') {
-        const user = {
+      // Try to make an actual API call
+      try {
+        const response = await apiClient.post('/auth/login', { email, password });
+        
+        if (response?.data?.user && response?.data?.token) {
+          // Store in localStorage
+          localStorage.setItem('token', response.data.token);
+          localStorage.setItem('user', JSON.stringify(response.data.user));
+          
+          return { user: response.data.user, token: response.data.token };
+        }
+      } catch (apiError) {
+        console.warn('API call failed, using fallback authentication');
+      }
+      
+      // Fallback for development only - should be removed in production
+      console.warn('Using fallback authentication - FOR DEVELOPMENT ONLY');
+      
+      // Check for valid development credentials
+      if (email === 'admin@example.com' && password === 'password') {
+        const userData = {
           id: '1',
           name: 'Admin User',
-          email: 'admin@example.com',
+          email: email,
           role: 'super_admin'
         };
-        
         const token = 'mock-jwt-token';
         
         // Store in localStorage
         localStorage.setItem('token', token);
-        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem('user', JSON.stringify(userData));
         
-        return { user, token };
+        return { user: userData, token };
       }
       
-      return rejectWithValue('Invalid email or password');
+      return rejectWithValue('Invalid credentials');
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || 'Login failed');
     }
