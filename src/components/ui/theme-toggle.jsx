@@ -1,9 +1,10 @@
+import React from "react";
 import { useTheme } from "./theme-provider";
 import { Moon, Sun, Laptop } from "lucide-react";
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
-
+  
   return (
     <div className="flex items-center space-x-1 p-1 rounded-md bg-gray-100 dark:bg-gray-800">
       <button

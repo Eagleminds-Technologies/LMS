@@ -1,106 +1,98 @@
-import React, { useEffect } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '../../../components/ui/Dialog';
+import React, { useState, useEffect } from 'react';
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '../../../components/ui/Dialog';
 import { Button } from '../../../components/ui/Button';
 import { Input } from '../../../components/ui/input';
 import { Label } from '../../../components/ui/Label';
 import { useLocation } from '../../../hooks/useLocation';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-
-// Form validation schema
-const schema = yup.object().shape({
-  name: yup.string()
-    .required('Country name is required')
-    .min(2, 'Name must be at least 2 characters'),
-  code: yup.string()
-    .required('Country code is required')
-    .matches(/^[A-Z]{2}$/, 'Code must be exactly 2 uppercase letters')
-});
 
 const CountryForm = ({ isOpen, onClose, editData }) => {
+  // Get location actions from custom hook
   const { addCountry, updateCountry, loading } = useLocation();
   
-  // Initialize React Hook Form
-  const { 
-    register, 
-    handleSubmit, 
-    reset, 
-    formState: { errors } 
-  } = useForm({
-    resolver: yupResolver(schema),
-    defaultValues: {
-      name: '',
-      code: ''
-    }
+  // Form state
+  const [formData, setFormData] = useState({
+    name: '',
+    code: '',
   });
-
-  // Reset form when modal opens or edit data changes
+  
+  // Set form data when editing a country
   useEffect(() => {
     if (editData) {
-      reset({
+      setFormData({
         name: editData.name || '',
         code: editData.code || '',
       });
     } else {
-      // Reset form when adding new
-      reset({
+      // Reset form when adding a new country
+      setFormData({
         name: '',
         code: '',
       });
     }
-  }, [editData, isOpen, reset]);
-
-  // Form submission handler
-  const onSubmit = async (data) => {
-    if (editData) {
-      await updateCountry(editData.id, data);
-    } else {
-      await addCountry(data);
-    }
-    
-    onClose();
+  }, [editData, isOpen]);
+  
+  // Handle form input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
-
+  
+  // Submit form
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    try {
+      if (editData) {
+        // Update existing country
+        await updateCountry(editData.id, formData);
+      } else {
+        // Add new country
+        await addCountry(formData);
+      }
+      onClose();
+    } catch (error) {
+      console.error('Error saving country:', error);
+    }
+  };
+  
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>{editData ? 'Edit Country' : 'Add New Country'}</DialogTitle>
+          <DialogTitle>{editData ? 'Edit Country' : 'Add Country'}</DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit}>
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="name" className="text-right">
                 Country Name
               </Label>
-              <div className="col-span-3">
-                <Input
-                  id="name"
-                  {...register('name')}
-                  className={`${errors.name ? 'border-red-500' : 'border-gray-300'}`}
-                />
-                {errors.name && (
-                  <p className="text-xs text-red-500 mt-1">{errors.name.message}</p>
-                )}
-              </div>
+              <Input
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                className="col-span-3"
+                required
+              />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="code" className="text-right">
                 Country Code
               </Label>
-              <div className="col-span-3">
-                <Input
-                  id="code"
-                  {...register('code')}
-                  placeholder="2-letter code (e.g., US)"
-                  maxLength={2}
-                  className={`${errors.code ? 'border-red-500' : 'border-gray-300'} uppercase`}
-                />
-                {errors.code && (
-                  <p className="text-xs text-red-500 mt-1">{errors.code.message}</p>
-                )}
-              </div>
+              <Input
+                id="code"
+                name="code"
+                value={formData.code}
+                onChange={handleChange}
+                className="col-span-3"
+                placeholder="e.g., US, UK, CA"
+                maxLength="2"
+                required
+              />
             </div>
           </div>
           <DialogFooter>
@@ -108,7 +100,7 @@ const CountryForm = ({ isOpen, onClose, editData }) => {
               Cancel
             </Button>
             <Button type="submit" disabled={loading}>
-              {editData ? 'Update' : 'Add'} Country
+              {loading ? 'Saving...' : 'Save'}
             </Button>
           </DialogFooter>
         </form>

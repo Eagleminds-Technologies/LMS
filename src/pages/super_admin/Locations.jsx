@@ -26,6 +26,9 @@ const Locations = () => {
   const [stateSearch, setStateSearch] = useState('');
   const [citySearch, setCitySearch] = useState('');
 
+  // State for current active tab
+  const [activeTab, setActiveTab] = useState("countries");
+
   // Get location data and functions from custom hook
   const { 
     countries, 
@@ -40,10 +43,21 @@ const Locations = () => {
     loading 
   } = useLocation();
 
-  // Fetch initial data
+  // Fetch initial data based on active tab
   useEffect(() => {
-    fetchCountries();
-  }, [fetchCountries]);
+    if (activeTab === "countries") {
+      fetchCountries();
+    } else if (activeTab === "states") {
+      fetchStates();
+    } else if (activeTab === "cities") {
+      fetchCities();
+    }
+  }, [activeTab, fetchCountries, fetchStates, fetchCities]);
+
+  // Handle tab change
+  const handleTabChange = (value) => {
+    setActiveTab(value);
+  };
 
   // Define table columns for countries
   const countryColumns = [
@@ -206,17 +220,17 @@ const Locations = () => {
         <h1 className="text-2xl font-semibold">Location Management</h1>
       </div>
 
-      <Tabs defaultValue="countries">
+      <Tabs defaultValue="countries" value={activeTab} onValueChange={handleTabChange}>
         <TabsList className="mb-4">
-          <TabsTrigger value="countries" onClick={() => fetchCountries()}>
+          <TabsTrigger value="countries">
             <Globe className="mr-2 h-4 w-4" />
             Countries
           </TabsTrigger>
-          <TabsTrigger value="states" onClick={() => fetchStates()}>
+          <TabsTrigger value="states">
             <Map className="mr-2 h-4 w-4" />
             States
           </TabsTrigger>
-          <TabsTrigger value="cities" onClick={() => fetchCities()}>
+          <TabsTrigger value="cities">
             <MapPin className="mr-2 h-4 w-4" />
             Cities
           </TabsTrigger>
@@ -250,6 +264,7 @@ const Locations = () => {
                 data={filteredCountries}
                 isLoading={loading}
                 className="border rounded-lg"
+                emptyMessage="No countries found. Add your first country!"
               />
             </CardContent>
           </Card>
@@ -283,6 +298,7 @@ const Locations = () => {
                 data={filteredStates}
                 isLoading={loading}
                 className="border rounded-lg"
+                emptyMessage="No states found. Add your first state!"
               />
             </CardContent>
           </Card>
@@ -316,6 +332,7 @@ const Locations = () => {
                 data={filteredCities}
                 isLoading={loading}
                 className="border rounded-lg"
+                emptyMessage="No cities found. Add your first city!"
               />
             </CardContent>
           </Card>

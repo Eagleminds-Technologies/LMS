@@ -1,9 +1,67 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { cn } from '../../utils/helpers';
 
-const Tabs = React.forwardRef(({ className, ...props }, ref) => {
+const Tabs = React.forwardRef(({ className, value, defaultValue, onValueChange, children, ...props }, ref) => {
+  // Internal state for controlled/uncontrolled usage
+  const [selectedTab, setSelectedTab] = useState(value || defaultValue || "");
+  
+  // Update internal state when value prop changes
+  useEffect(() => {
+    if (value !== undefined) {
+      setSelectedTab(value);
+    }
+  }, [value]);
+  
+  // Handle tab changes
+  const handleValueChange = (newValue) => {
+    if (value === undefined) {
+      // In uncontrolled mode, update internal state
+      setSelectedTab(newValue);
+    }
+    
+    // Call the provided onValueChange handler if it exists
+    if (onValueChange) {
+      onValueChange(newValue);
+    }
+  };
+  
+  // Clone children to pass selectedTab and handler
+  const childrenWithProps = React.Children.map(children, (child) => {
+    if (!React.isValidElement(child)) return child;
+    
+    if (child.type.displayName === "TabsList") {
+      return React.cloneElement(child, {
+        children: React.Children.map(child.props.children, (tabChild) => {
+          if (!React.isValidElement(tabChild) || tabChild.type.displayName !== "TabsTrigger") {
+            return tabChild;
+          }
+          
+          const tabValue = tabChild.props.value;
+          return React.cloneElement(tabChild, {
+            active: selectedTab === tabValue,
+            onClick: (e) => {
+              tabChild.props.onClick?.(e);
+              handleValueChange(tabValue);
+            },
+            "aria-selected": selectedTab === tabValue
+          });
+        })
+      });
+    }
+    
+    if (child.type.displayName === "TabsContent") {
+      return React.cloneElement(child, {
+        active: selectedTab === child.props.value
+      });
+    }
+    
+    return child;
+  });
+  
   return (
-    <div className={cn("w-full", className)} ref={ref} {...props} />
+    <div className={cn("w-full", className)} ref={ref} {...props}>
+      {childrenWithProps}
+    </div>
   );
 });
 
@@ -24,7 +82,7 @@ const TabsList = React.forwardRef(({ className, ...props }, ref) => {
 
 TabsList.displayName = "TabsList";
 
-const TabsTrigger = React.forwardRef(({ className, active, ...props }, ref) => {
+const TabsTrigger = React.forwardRef(({ className, active, value, ...props }, ref) => {
   return (
     <button
       ref={ref}
@@ -42,7 +100,7 @@ const TabsTrigger = React.forwardRef(({ className, active, ...props }, ref) => {
 
 TabsTrigger.displayName = "TabsTrigger";
 
-const TabsContent = React.forwardRef(({ className, active, ...props }, ref) => {
+const TabsContent = React.forwardRef(({ className, active, value, ...props }, ref) => {
   return (
     <div
       ref={ref}
