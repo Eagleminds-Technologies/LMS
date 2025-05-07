@@ -2,7 +2,7 @@ import * as React from "react";
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { Check, ChevronDown, Search } from "lucide-react";
 import { cn } from "../../utils/helpers";
-import { Label } from "./Input";
+import { Label } from "./Label";
 
 const Select = SelectPrimitive.Root;
 const SelectGroup = SelectPrimitive.Group;
